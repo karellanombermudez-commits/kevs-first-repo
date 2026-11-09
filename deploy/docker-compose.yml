@@ -1,0 +1,8 @@
+services:
+  api:
+    build: { context: .., dockerfile: deploy/Dockerfile.api }
+    ports: ["8000:8000"]
+  streamlit:
+    build: { context: .., dockerfile: deploy/Dockerfile.streamlit }
+    ports: ["8501:8501"]
+    depends_on: [api]

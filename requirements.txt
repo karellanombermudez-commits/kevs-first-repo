@@ -1,0 +1,12 @@
+# Pinned export for deployment. Regenerate with:  pip freeze > requirements.txt
+# Day-to-day, install from pyproject.toml instead:  pip install -e ".[dev,app]"
+pandas
+numpy
+pyarrow
+scikit-learn
+joblib
+python-dotenv
+streamlit
+fastapi
+uvicorn[standard]
+pydantic

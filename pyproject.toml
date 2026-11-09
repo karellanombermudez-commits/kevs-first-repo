@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "project"
+version = "0.1.0"
+description = "Data analysis → ML → deployment"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "numpy",
+    "pyarrow",          # Parquet; the Python<->R bridge
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "plotly",
+    "python-dotenv",
+    "joblib",
+]
+
+[project.optional-dependencies]
+dl = ["torch", "torchvision"]           # or tensorflow
+app = ["streamlit", "fastapi", "uvicorn[standard]", "pydantic", "requests"]
+dev = ["jupyterlab", "ipykernel", "pytest", "ruff", "nbstripout", "pre-commit"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["notebooks"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

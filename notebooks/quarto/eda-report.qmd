@@ -1,0 +1,38 @@
+---
+title: "Exploratory Analysis"
+author: "Team"
+format:
+  html:
+    toc: true
+    code-fold: true
+execute:
+  echo: true
+---
+
+## Load (Python)
+
+```{python}
+import pandas as pd
+df = pd.read_parquet("../../data/processed/clean.parquet")
+df.describe()
+```
+
+## Visualise (R)
+
+```{r}
+library(arrow); library(ggplot2)
+df <- read_parquet("../../data/processed/clean.parquet")
+ggplot(df, aes(feature_1, fill = factor(target))) + geom_density(alpha = .4) + theme_minimal()
+```
+
+## Findings
+
+- …
+- …
+
+## Model results
+
+```{python}
+import json
+print(json.load(open("../../models/latest/metrics.json")))
+```

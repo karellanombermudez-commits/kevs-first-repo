@@ -1,0 +1,41 @@
+├── data/                 ← git-ignored except .gitkeep and schema.md
+│   ├── raw/              original, immutable
+│   ├── external/         third-party sources
+│   ├── interim/          intermediate transforms
+│   ├── processed/        final clean data (Parquet) that models consume
+│   └── schema.md         THE CONTRACT: columns + types of processed data
+│
+├── notebooks/            exploration only — nothing here is imported by code
+│   ├── python/           .ipynb or .py with # %% cells
+│   ├── r/                .R scripts / .Rmd
+│   └── quarto/           .qmd (R + Python chunks), rendered to reports/
+│
+├── src/                  Python package: all reusable logic lives here
+│   ├── config.py         paths and settings, read once everywhere
+│   ├── data/             make_dataset.py    raw → processed
+│   ├── features/         build_features.py  processed → model input
+│   ├── models/           train_model.py, predict_model.py, deep_learning/
+│   └── visualization/    plot_settings.py, visualize.py
+│
+├── R/                    reusable R functions (sourced by notebooks/r and quarto)
+│
+├── models/               saved weights / pickles — git-ignored, tracked by DVC or Drive
+│
+├── app/
+│   ├── streamlit/        dashboard (app.py + pages/)
+│   ├── api/              FastAPI service wrapping predict()
+│   └── web/              static site / frontend
+│
+├── deploy/               Dockerfiles, docker-compose, Procfile, cloud configs
+├── reports/figures/      rendered Quarto output and exported plots
+├── tests/                pytest for src/ (the contracts are tested here)
+├── docs/                 setup notes, decisions, data dictionary
+├── references/           papers, manuals, folder_structure.txt
+│
+├── pyproject.toml        Python deps (pip install -e ".[dev,app]")
+├── requirements.txt      pinned export for deployment
+├── renv.lock             R deps (renv::restore())
+├── _quarto.yml           Quarto project config
+├── Makefile              make data / train / app / api / report
+├── .env.example          secrets template — copy to .env (git-ignored)
+└── .github/workflows/    CI: lint + tests on every PR
